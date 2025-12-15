@@ -97,7 +97,9 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxImofAxiVqjhM_eB1CYhVkv2wscfWzy-5a2mpaa-FE2qQ8rJAnwywck1mNVYPJC3Jt/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdwtQJ4KN7racN72gzgQtStA22GYAoWNvYY183kB0wS5xODPToYzObiJj96uByk2qb/exec';
+
+    console.log('폼 제출 시작:', formState);
 
     try {
       const formData = new FormData();
@@ -106,12 +108,25 @@ export default function App() {
       formData.append('phone', formState.phone);
       formData.append('sales', formState.sales);
 
-      await fetch(SCRIPT_URL, {
+      // URLSearchParams로 변환하여 전송 (Google Apps Script와 더 호환성이 좋음)
+      const params = new URLSearchParams();
+      params.append('company', formState.company);
+      params.append('name', formState.name);
+      params.append('phone', formState.phone);
+      params.append('sales', formState.sales);
+
+      const response = await fetch(SCRIPT_URL, {
         method: 'POST',
-        body: formData
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params.toString()
       });
+
+      console.log('요청 전송 완료 (no-cors 모드에서는 응답 확인 불가)');
     } catch (error) {
-      // no-cors 모드에서는 에러처럼 보이지만 실제로 전송됨
+      console.error('폼 제출 에러:', error);
     }
 
     alert("무료 진단 신청이 완료되었습니다.\n담당 경영지도사가 빠르게 연락드리겠습니다.");
@@ -327,7 +342,7 @@ export default function App() {
                 <img
                   src="/ceo-profile.jpg"
                   alt="김경중 대표"
-                  className="rounded-2xl shadow-2xl border-4 border-navy-800 transition-all duration-700 object-cover h-[500px] w-full"
+                  className="rounded-2xl shadow-2xl border-4 border-navy-800 transition-all duration-700 object-cover object-top h-[600px] w-full"
                 />
                 <div className="absolute -bottom-10 -right-10 bg-gold-500 text-navy-900 p-8 rounded-tr-3xl rounded-bl-3xl shadow-xl hidden md:block">
                   <p className="text-sm font-bold opacity-80 mb-1">REPRESENTATIVE</p>
