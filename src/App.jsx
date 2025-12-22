@@ -189,9 +189,9 @@ export default function App() {
 
           <FadeInUp delay={200}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
-              정책자금 승인,<br />
-              <span className="text-gold-gradient">당신이 믿었던 전문가</span>가<br />
-              오히려 걸림돌이었을 수 있습니다.
+              [긴급] 2026년 정책자금,<br />
+              <span className="text-gold-gradient">우리 회사 한도 조회하기</span><br />
+              (30초 소요)
             </h1>
           </FadeInUp>
 
@@ -664,25 +664,14 @@ export default function App() {
               <h3 className="text-xl font-bold mb-6 text-center">무료 진단 및 상담 신청</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1">기업명</label>
-                  <input
-                    type="text"
-                    required
-                    value={formState.company}
-                    onChange={e => setFormState({ ...formState, company: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-navy-900 transition-colors"
-                    placeholder="(주)원탑경영컨설팅"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1">담당자 성함</label>
+                  <label className="block text-sm font-bold text-slate-700 mb-1">성함</label>
                   <input
                     type="text"
                     required
                     value={formState.name}
                     onChange={e => setFormState({ ...formState, name: e.target.value })}
                     className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-navy-900 transition-colors"
-                    placeholder="김경중 대표"
+                    placeholder="홍길동"
                   />
                 </div>
                 <div>
@@ -696,27 +685,13 @@ export default function App() {
                     placeholder="010-1234-5678"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1">연 매출액 (대략)</label>
-                  <select
-                    value={formState.sales}
-                    onChange={e => setFormState({ ...formState, sales: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-navy-900 transition-colors"
-                  >
-                    <option value="">선택해주세요</option>
-                    <option value="1억 미만">1억 미만</option>
-                    <option value="1억 ~ 10억">1억 ~ 10억</option>
-                    <option value="10억 ~ 50억">10억 ~ 50억</option>
-                    <option value="50억 이상">50억 이상</option>
-                  </select>
-                </div>
 
                 <div className="pt-2">
                   <button
                     type="submit"
                     className="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-4 rounded-lg shadow-lg transition-all transform hover:-translate-y-1 flex justify-center items-center gap-2"
                   >
-                    <span>무료 진단 신청하기</span>
+                    <span>내 한도 무료로 문자 받기</span>
                     <i className="fa-solid fa-paper-plane"></i>
                   </button>
                   <p className="text-center text-xs text-slate-400 mt-3">
